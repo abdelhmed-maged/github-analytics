@@ -1,23 +1,36 @@
-import logo from './logo.svg';
 import './App.css';
+import SideBar from './bundles/components/side-bar';
+import ActionSideBar from './bundles/components/action-sidebar';
 
+import { Route, Switch } from 'react-router-dom';
+import TopUsers from './bundles/routes/users';
+import TrendingRepos from './bundles/routes/repo';
+import Home from './bundles/routes/home';
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="container">
+      <div className="side-nav left">
+        <SideBar />
+      </div>
+      <div className="main">
+        <Switch>
+        <Route path='/' exact>
+          <Home />
+        </Route>
+        <Route path='/trending-users' exact>
+          <TopUsers />
+        </Route>
+        <Route path='/trending-repos' exact>
+          <TrendingRepos />
+        </Route>
+        </Switch>
+      </div>
+      <div className="side-nav right">
+        <ActionSideBar />
+      </div>
+    </div>
+  
     </div>
   );
 }
